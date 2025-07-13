@@ -1,4 +1,4 @@
-# 🧠 Smart Research Assistant
+# 🧠 Smart Assistant for Research Summarization
 
 A Streamlit-powered application using Google Gemini AI for:
 - 📄 Document upload (PDF/TXT)
