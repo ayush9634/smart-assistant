@@ -8,7 +8,9 @@ A Streamlit-powered application using Google Gemini AI for:
 
 ---
 
+## 🌐 Live Demo
 
+https://ayushsmartassistant.streamlit.app
 
 ## 🚀 Features
 
