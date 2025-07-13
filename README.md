@@ -1,4 +1,4 @@
-# 🧠 Smart Research Assistant (Gemini Edition)
+# 🧠 Smart Research Assistant
 
 A Streamlit-powered application using Google Gemini AI for:
 - 📄 Document upload (PDF/TXT)
@@ -7,6 +7,8 @@ A Streamlit-powered application using Google Gemini AI for:
 - 🎯 Challenge Me Mode (Objective & Subjective quiz generation)
 
 ---
+
+
 
 ## 🚀 Features
 
@@ -39,8 +41,8 @@ smart-assistant/
 
 1. **Clone this repo**
 ```bash
-git clone https://github.com/your-username/smart-assistant-gemini.git
-cd smart-assistant-gemini
+git clone https://github.com/ayush9634/smart-assistant.git
+cd smart-assistant
 ```
 
 2. **Create a virtual environment**
