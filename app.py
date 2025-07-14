@@ -23,7 +23,7 @@ from backend.challenge import (
 
 # ───── Streamlit UI Setup ─────
 st.set_page_config("Smart Research Assistant (Gemini)", "🧠", layout="wide")
-st.title("🧠 Smart Assistant for Research Summarization")
+st.title("🧠 Gemini-Powered Research Assistant")
 
 uploaded_file = st.file_uploader("📂 Upload a PDF or TXT file", type=["pdf", "txt"])
 
@@ -98,14 +98,35 @@ if uploaded_file:
             st.markdown(f"**Q{i}. {q['question']}**")
             options = q["options"]
             user_choice = st.radio(f"Choose one:", options, key=f"q{i}")
-            responses.append((user_choice, q["correct_option"]))
+            responses.append({
+                "question": q["question"],
+                "options": options,
+                "user_choice": user_choice,
+                "correct_option": q["correct_option"]
+            })
             st.markdown("---")
 
         if st.button("✅ Submit Objective Answers"):
-            for idx, (user_ans, correct_letter) in enumerate(responses):
-                if user_ans.strip().upper().startswith(correct_letter.upper()):
+            st.markdown("### 🧾 Answer Review:")
+            for i, resp in enumerate(responses, start=1):
+                user = resp["user_choice"]
+                correct_letter = resp["correct_option"]
+                correct_option = next(
+                    (opt for opt in resp["options"] if opt.strip().upper().startswith(correct_letter.upper())),
+                    None
+                )
+                is_correct = user.strip().upper().startswith(correct_letter.upper())
+
+                if is_correct:
+                    st.success(f"✅ Q{i}: Correct!\n\n**You answered:** {user}")
                     score += 1
-            st.success(f"🎉 You scored {score}/{len(responses)}")
+                else:
+                    st.error(f"❌ Q{i}: Incorrect.")
+                    st.markdown(f"**Your answer:** {user}")
+                    st.markdown(f"**Correct answer:** {correct_option}")
+                st.markdown("---")
+
+            st.success(f"🎉 Final Score: {score} / {len(responses)}")
 
     # ───── Subjective Quiz ─────
     if "subjective" in st.session_state:
